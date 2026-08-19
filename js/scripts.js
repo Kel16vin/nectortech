@@ -8,12 +8,12 @@ const ICONS = {
 };
 
 const SERVICES = [
-  {ic:'design', title:'Architectural, Structural, Electrical & Mechanical Designs', short:'Full design coordination across every engineering discipline.', long:'Concept through construction drawings — architectural layouts, structural calculations, and electrical and mechanical systems designed together so nothing conflicts once building starts.', tags:['Concept design','Structural calcs','MEP coordination']},
-  {ic:'building', title:'Building Construction', short:'Residential, commercial and institutional builds, managed on site.', long:'From groundbreaking to finishing, we manage labour, materials and sequencing on site, with quality and safety checks built into every stage of the build.', tags:['Residential','Commercial','Site supervision']},
-  {ic:'survey', title:'Surveying & Real Estate', short:'Land surveys, boundary work and property development support.', long:'Topographic and boundary surveys, site assessments, and support for real estate development from land acquisition through to sub-division and titling.', tags:['Topographic survey','Boundary marking','Land development']},
-  {ic:'manage', title:'Project Management', short:'One accountable team tracking cost, schedule and quality.', long:'Independent oversight of contractors, budgets and timelines — giving clients a single point of contact who is accountable for the project reaching handover on spec.', tags:['Scheduling','Budget control','Contractor oversight']},
-  {ic:'plumb', title:'Electrical & Plumbing Works', short:'Installation and maintenance of core building systems.', long:'Wiring, distribution and fittings alongside water supply, drainage and sanitary installation — the systems that make a completed structure actually livable.', tags:['Wiring & distribution','Water supply','Drainage & sanitary']},
-  {ic:'planning', title:'Physical Planning', short:'Site layout and zoning-aligned development planning.', long:'Land-use and site layout planning that accounts for access, drainage, future expansion and compliance with local physical-planning requirements.', tags:['Site layout','Zoning compliance','Access planning']}
+  {ic:'design', title:'Architectural, Structural, Electrical & Mechanical Designs', short:'Full design coordination across every engineering discipline.', long:'Concept through construction drawings — architectural layouts, structural calculations, and electrical and mechanical systems designed together so nothing conflicts once building starts.', tags:['Concept design','Structural calcs','MEP coordination'], img:'https://images.unsplash.com/photo-1521790797524-b2497295b8a0?auto=format&fit=crop&w=800&q=80', fullImg:'https://images.unsplash.com/photo-1554435493-93422e8220c8?auto=format&fit=crop&w=800&q=80'},
+  {ic:'building', title:'Building Construction', short:'Residential, commercial and institutional builds, managed on site.', long:'From groundbreaking to finishing, we manage labour, materials and sequencing on site, with quality and safety checks built into every stage of the build.', tags:['Residential','Commercial','Site supervision'], img:'https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop&w=800&q=80', fullImg:'https://images.unsplash.com/photo-1494522358652-f30e61a60313?auto=format&fit=crop&w=800&q=80'},
+  {ic:'survey', title:'Surveying & Real Estate', short:'Land surveys, boundary work and property development support.', long:'Topographic and boundary surveys, site assessments, and support for real estate development from land acquisition through to sub-division and titling.', tags:['Topographic survey','Boundary marking','Land development'], img:'https://images.unsplash.com/photo-1513467535987-fd81bc7d62f8?auto=format&fit=crop&w=800&q=80', fullImg:'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=800&q=80'},
+  {ic:'manage', title:'Project Management', short:'One accountable team tracking cost, schedule and quality.', long:'Independent oversight of contractors, budgets and timelines — giving clients a single point of contact who is accountable for the project reaching handover on spec.', tags:['Scheduling','Budget control','Contractor oversight'], img:'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80', fullImg:'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80'},
+  {ic:'plumb', title:'Electrical & Plumbing Works', short:'Installation and maintenance of core building systems.', long:'Wiring, distribution and fittings alongside water supply, drainage and sanitary installation — the systems that make a completed structure actually livable.', tags:['Wiring & distribution','Water supply','Drainage & sanitary'], img:'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80', fullImg:'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80'},
+  {ic:'planning', title:'Physical Planning', short:'Site layout and zoning-aligned development planning.', long:'Land-use and site layout planning that accounts for access, drainage, future expansion and compliance with local physical-planning requirements.', tags:['Site layout','Zoning compliance','Access planning'], img:'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80', fullImg:'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80'}
 ];
 
 function buildHomeServices(){
@@ -21,6 +21,7 @@ function buildHomeServices(){
   if(!el) return;
   el.innerHTML = SERVICES.map((s,i)=>`
     <div class="svc-card">
+      <div class="svc-img"><img src="${s.img}" alt="${s.title}" loading="lazy"></div>
       <div class="ic">${ICONS[s.ic]}</div>
       <div class="num">0${i+1}</div>
       <h3>${s.title}</h3>
@@ -40,14 +41,15 @@ function buildFullServices(){
         <p>${s.long}</p>
         <div class="tags">${s.tags.map(t=>`<span>${t}</span>`).join('')}</div>
       </div>
+      <div class="svc-img"><img src="${s.fullImg}" alt="${s.title}" loading="lazy"></div>
     </div>`).join('');
 }
 
 const CAPS = [
-  {tag:'Residential', title:'Residential developments', desc:'Family homes and multi-unit residential builds — from architectural design through to finishing and handover.', scope:'Design · Build · Finish', art:`<rect width="100%" height="100%" fill="#1C2127"/><path d="M40 170 L40 90 L110 50 L180 90 L180 170 Z" stroke="#FAFAF8" stroke-width="1.5" fill="none"/><path d="M60 170 L60 120 L90 120 L90 170" stroke="#C31F2E" stroke-width="1.5" fill="none"/><line x1="120" y1="100" x2="150" y2="100" stroke="#4A5560"/><line x1="120" y1="130" x2="150" y2="130" stroke="#4A5560"/><line x1="200" y1="170" x2="200" y2="60" stroke="#39424C" stroke-dasharray="3 3"/>`},
-  {tag:'Commercial', title:'Commercial & institutional buildings', desc:'Offices, retail and institutional structures requiring coordinated structural and MEP design.', scope:'Structural · MEP · Supervision', art:`<rect width="100%" height="100%" fill="#1C2127"/><rect x="50" y="40" width="90" height="130" stroke="#FAFAF8" stroke-width="1.5" fill="none"/><line x1="50" y1="70" x2="140" y2="70" stroke="#4A5560"/><line x1="50" y1="100" x2="140" y2="100" stroke="#4A5560"/><line x1="50" y1="130" x2="140" y2="130" stroke="#4A5560"/><rect x="165" y="90" width="55" height="80" stroke="#C31F2E" stroke-width="1.5" fill="none"/><line x1="165" y1="115" x2="220" y2="115" stroke="#4A5560"/><line x1="165" y1="140" x2="220" y2="140" stroke="#4A5560"/>`},
-  {tag:'Infrastructure', title:'Infrastructure & site works', desc:'Surveying, site preparation and physical planning that gets a plot ready for development.', scope:'Survey · Grading · Layout', art:`<rect width="100%" height="100%" fill="#1C2127"/><path d="M20 150 L100 60 L180 150" stroke="#FAFAF8" stroke-width="1.5" fill="none"/><circle cx="100" cy="60" r="4" stroke="#E5AC3C" stroke-width="1.5" fill="none"/><line x1="100" y1="60" x2="100" y2="20" stroke="#39424C" stroke-dasharray="2 3"/><path d="M20 150h190" stroke="#4A5560"/><path d="M45 150v-10M75 150v-10M105 150v-10M135 150v-10M165 150v-10" stroke="#4A5560"/>`},
-  {tag:'Systems', title:'Electrical & plumbing installations', desc:'Distribution, wiring, water supply and drainage work fitted to completed or in-progress structures.', scope:'Wiring · Water · Drainage', art:`<rect width="100%" height="100%" fill="#1C2127"/><path d="M40 40v130" stroke="#4A5560"/><path d="M100 40v130" stroke="#4A5560"/><path d="M160 40v130" stroke="#4A5560"/><path d="M40 70h120M40 110h120" stroke="#39424C"/><circle cx="40" cy="70" r="4" fill="#C31F2E"/><circle cx="100" cy="110" r="4" fill="#E5AC3C"/><circle cx="160" cy="70" r="4" fill="#FAFAF8"/>`}
+  {tag:'Residential', title:'Residential developments', desc:'Family homes and multi-unit residential builds — from architectural design through to finishing and handover.', scope:'Design · Build · Finish', img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80'},
+  {tag:'Commercial', title:'Commercial & institutional buildings', desc:'Offices, retail and institutional structures requiring coordinated structural and MEP design.', scope:'Structural · MEP · Supervision', img:'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=800&q=80'},
+  {tag:'Infrastructure', title:'Infrastructure & site works', desc:'Surveying, site preparation and physical planning that gets a plot ready for development.', scope:'Survey · Grading · Layout', img:'https://images.unsplash.com/photo-1581094271901-8022df4466f9?auto=format&fit=crop&w=800&q=80'},
+  {tag:'Systems', title:'Electrical & plumbing installations', desc:'Distribution, wiring, water supply and drainage work fitted to completed or in-progress structures.', scope:'Wiring · Water · Drainage', img:'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=800&q=80'}
 ];
 
 function buildCaps(){
@@ -55,7 +57,7 @@ function buildCaps(){
   if(!el) return;
   el.innerHTML = CAPS.map(c=>`
     <div class="cap-card">
-      <div class="cap-art"><svg viewBox="0 0 240 180" preserveAspectRatio="xMidYMid slice">${c.art}</svg></div>
+      <div class="cap-art"><img src="${c.img}" alt="${c.title}" loading="lazy"></div>
       <div class="cap-body">
         <div class="tag">${c.tag}</div>
         <h3>${c.title}</h3>
