@@ -72,9 +72,45 @@ function toggleMnav(){ document.getElementById('mnav').classList.toggle('open');
 function submitForm(e){
   e.preventDefault();
   const status = document.getElementById('formStatus');
+  const form = document.getElementById('quoteForm');
+  const btn = form.querySelector('button[type="submit"]');
+  const data = {
+    name: document.getElementById('f-name').value,
+    phone: document.getElementById('f-phone').value,
+    email: document.getElementById('f-email').value,
+    service: document.getElementById('f-service').value,
+    message: document.getElementById('f-msg').value,
+    _subject: 'New project enquiry — Nector Technical Services',
+    _template: 'table',
+    _captcha: 'false'
+  };
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
   status.style.color = 'var(--red)';
-  status.textContent = 'Thanks — this is a demo form. In the live site this would send straight to the Nector office.';
-  document.getElementById('quoteForm').reset();
+  status.textContent = 'Sending your enquiry…';
+  fetch('https://formsubmit.co/ajax/nectortechnicals@gmail.com', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+    body: JSON.stringify(data)
+  })
+  .then(function(res){ return res.json(); })
+  .then(function(res){
+    if(res.success === 'true' || res.success === true){
+      status.style.color = '#2E7D32';
+      status.textContent = 'Thanks — your enquiry has been sent to the Nector office. We will get back to you shortly.';
+      form.reset();
+    } else {
+      throw new Error('submit failed');
+    }
+  })
+  .catch(function(){
+    status.style.color = 'var(--red)';
+    status.textContent = 'Something went wrong sending the form. Please email nectortechnicals@gmail.com directly.';
+  })
+  .finally(function(){
+    btn.disabled = false;
+    btn.textContent = 'Send enquiry';
+  });
   return false;
 }
 
